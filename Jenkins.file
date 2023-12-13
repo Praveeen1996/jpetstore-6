@@ -9,7 +9,7 @@ pipeline {
         }
     stage('Checkout From Git'){
             steps{
-                
+                git 'https://github.com/Praveeen1996/jpetstore-6.git'
             }
         }
     }
