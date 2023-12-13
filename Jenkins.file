@@ -32,7 +32,7 @@ environment {
                 }
             }
         }
-     tage("quality gate"){
+     stage("quality gate"){
            steps {
                  script {
                      waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token' 
