@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+tools {
+  jdk 'java-17'
+  maven 'maven-3'
+}
     stages {
         stage('clean workspace'){
             steps{
@@ -12,5 +15,10 @@ pipeline {
                 git 'https://github.com/Praveeen1996/jpetstore-6.git'
             }
         }
+    stage('mvn build'){
+            steps{
+                sh 'mvn clean package'
+            }
+        }  
     }
 }
