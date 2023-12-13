@@ -4,6 +4,9 @@ tools {
   maven 'maven-3'
   jdk 'java-17'
 }
+environment {
+        SCANNER_HOME=tool 'sonar-scanner'
+    }
     stages {
         stage('clean workspace'){
             steps{
@@ -19,6 +22,15 @@ tools {
             steps{
                 sh 'mvn clean package'
             }
-        }  
+        } 
+    stage("Sonarqube Analysis "){
+            steps{
+                withSonarQubeEnv('sonar-server') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Petclinic \
+                    -Dsonar.java.binaries=. \
+                    -Dsonar.projectKey=Petclinic '''
+                }
+            }
+        }
     }
 }
