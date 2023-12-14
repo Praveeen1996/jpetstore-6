@@ -45,14 +45,14 @@ environment {
                 dependencyCheckPublisher pattern: '**/dependency-check-report.html'
             }
         }
-      stage("Docker Build & Push"){
+      stage ('Build and push to docker hub'){
             steps{
                 script{
-                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){   
-                       sh "docker build -t petshop ."
-                       sh "docker tag petshop praveenhema/petshop:latest "
-                       sh "docker push praveenhema/petshop:latest "
-                    }
+                    withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
+                        sh "docker build -t petshop ."
+                        sh "docker tag petshop praveenhema/petshop:latest"
+                        sh "docker push praveenhema/petshop:latest"
+                   }
                 }
             }
         }
