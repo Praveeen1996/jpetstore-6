@@ -56,5 +56,10 @@ environment {
                 }
             }
         }
+    stage("TRIVY"){
+            steps{
+                sh "trivy image praveenhema/petshop:latest > trivy.txt"
+            }
+        }
     }
 }
