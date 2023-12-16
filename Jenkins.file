@@ -61,5 +61,11 @@ environment {
                 sh "trivy image praveenhema/petshop:latest > trivy.txt"
             }
         }
+    stage("Trigger Deployment"){
+            steps{
+                // Trigger the deployment pipeline and wait for it to complete
+                  build job: 'CD-petshop' , wait: true
+            }
+        }
     }
 }
